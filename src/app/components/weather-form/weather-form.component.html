@@ -1,0 +1,52 @@
+<h2 mat-dialog-title>{{title}}</h2>
+<mat-dialog-content class="mat-typography">
+    <form class="my-form" [formGroup]="weatherForm" (ngSubmit)="onSubmit()">
+        <mat-form-field class=" fill">
+            <mat-label>Summary</mat-label>
+            <!--          <label for="username"></label>-->
+            <input matInput id="summary" formControlName="summary">
+            <mat-error *ngIf="!!(hasError('summary', 'required') &&
+                (getControl('summary')?.dirty || getControl('summary')?.touched))">
+                Campo Requerido
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Choose a date</mat-label>
+            <input matInput id="date" formControlName="date" [matDatepicker]="picker">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="!!(hasError('date', 'required') &&
+                (getControl('date')?.dirty || getControl('date')?.touched))">
+                Campo Requerido
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>TemperatureC</mat-label>
+            <!--          <label for="username"></label>-->
+            <input matInput id="temperaturec" formControlName="temperaturec">
+            <mat-error *ngIf="!!(hasError('temperaturec', 'required') &&
+                (getControl('temperaturec')?.dirty || getControl('temperaturec')?.touched))">
+                Campo Requerido
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>TemperatureF</mat-label>
+            <!--          <label for="username"></label>-->
+            <input matInput id="temperaturef" type=number formControlName="temperaturef">
+            <mat-error *ngIf="!!(hasError('temperaturef', 'required') &&
+                (getControl('temperaturef')?.dirty || getControl('temperaturef')?.touched))">
+                Campo Requerido
+            </mat-error>
+        </mat-form-field>
+        <div>
+            <button mat-raised-button class="btn-block mt-3" [class.spinner]="loading" color="primary" type="submit"
+                [disabled]="this.weatherForm.invalid || loading">
+                {{ loading == true ? 'Save' : 'Save' }}
+            </button>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>
