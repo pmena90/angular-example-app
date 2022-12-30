@@ -1,2 +1,4 @@
 # angular-example-app
-Angular boilerplate with auth using JWT token.
+- Auth with JWT token.
+- Register
+- Weather CRUD
